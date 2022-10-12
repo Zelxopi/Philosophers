@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:02:15 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/04 15:05:14 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:51:58 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,32 @@ int	philo_atoi(const char *str)
 			ft_error("Invalid argument");
 	}
 	return (nb * negative);
+}
+void *routine()
+{return(0);}
+
+void	init_philo(t_var *var)
+{
+	int	i = 0;
+	var->philo = malloc(sizeof(t_philo) * var->number_of_philosophers);
+
+	while (i < var->number_of_philosophers)
+	{
+		var->philo[i].id = i + 1;
+		var->philo[i].l_fork = i;
+		var->philo[i].r_fork = i + 1;
+		i++;
+	}
+}
+//init philo struct values before philo_array
+void	init_thread(t_var *var)
+{
+	int	i = 0;
+	var->t = malloc(sizeof(pthread_t) * var->number_of_philosophers);
+
+	while (i < var->number_of_philosophers)
+	{
+		pthread_create(&var->t[i], NULL, &routine, (void *) &var->philo[i]);
+		i++;
+	}
 }
