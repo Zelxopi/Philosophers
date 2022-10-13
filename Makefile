@@ -6,7 +6,7 @@
 #    By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 17:07:45 by mtrembla          #+#    #+#              #
-#    Updated: 2022/10/04 15:06:41 by mtrembla         ###   ########.fr        #
+#    Updated: 2022/10/13 13:59:29 by mtrembla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = philosophers
 SRC = main.c \
 	parsing.c \
 	utils.c \
+	actions.c \
 
 OBJ = $(SRC:.c=.o)
 

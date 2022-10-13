@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:05:41 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/12 16:02:31 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:00:30 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,18 @@ void *routine(void *philo_void)
 	t_philo *philo;
 	
 	philo = philo_void;
-	pthread_mutex_lock(philo->var->forks);
-	printf("%d has taken a fork\n", philo->id);
-	printf("%d is eating\n", philo->id);
-	pthread_mutex_unlock(philo->var->forks);
+	taking_forks(philo);
+	eating(philo);
 	printf("%d is sleeping\n", philo->id);
 	printf("%d is thinking\n", philo->id);
 	return(0);
+}
+
+void	mutex_destroy(t_var *var)
+{
+	int i = var->number_of_philosophers;
+	while (i--)
+	{
+		pthread_mutex_destroy(&var->forks[i]);
+	}
 }
