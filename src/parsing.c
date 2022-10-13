@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:02:15 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/12 13:51:58 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:05:56 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ void	var_init(int argc, char **argv, t_var *var)
 	var->time_to_die = philo_atoi(argv[2]);
 	var->time_to_eat = philo_atoi(argv[3]);
 	var->time_to_sleep = philo_atoi(argv[4]);
+	var->forks = ft_calloc(1, sizeof(pthread_mutex_t));
 	if (argc == 6)
-	var->number_of_times_eat = philo_atoi(argv[5]);
+		var->number_of_times_eat = philo_atoi(argv[5]);
 	else
-	var->number_of_times_eat = 0;
+		var->number_of_times_eat = '\0';
 }
 
 int	philo_atoi(const char *str)
@@ -49,8 +50,6 @@ int	philo_atoi(const char *str)
 	}
 	return (nb * negative);
 }
-void *routine()
-{return(0);}
 
 void	init_philo(t_var *var)
 {
@@ -62,18 +61,26 @@ void	init_philo(t_var *var)
 		var->philo[i].id = i + 1;
 		var->philo[i].l_fork = i;
 		var->philo[i].r_fork = i + 1;
+		var->philo[i].var = var;
 		i++;
 	}
 }
-//init philo struct values before philo_array
+
 void	init_thread(t_var *var)
 {
 	int	i = 0;
-	var->t = malloc(sizeof(pthread_t) * var->number_of_philosophers);
 
+	pthread_mutex_init(var->forks, NULL);
 	while (i < var->number_of_philosophers)
 	{
-		pthread_create(&var->t[i], NULL, &routine, (void *) &var->philo[i]);
+		pthread_create(&var->philo[i].t, NULL, &routine, (void *)&var->philo[i]);
+		i++;
+	}
+	i = 0;
+	while (i < var->number_of_philosophers)
+	{
+		pthread_join(var->philo[i].t, NULL);
+		printf("Closed thread:%d\n", i);
 		i++;
 	}
 }
