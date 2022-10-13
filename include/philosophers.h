@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:48:41 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/13 15:55:35 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:07:48 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ void	mutex_destroy(t_var *var);
 //actions
 void	taking_forks(t_philo *philo);
 void	eating(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	thinking(t_philo *philo);
 
 #endif

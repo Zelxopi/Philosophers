@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:02:15 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/13 15:49:53 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:21:40 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ void	init_thread(t_var *var)
 		pthread_create(&var->philo[i].t, NULL, &routine, (void *)&var->philo[i]);
 		i++;
 	}
-	i = 0;
-	while (i < var->number_of_philosophers)
-	{
-		pthread_join(var->philo[i].t, NULL);
-		printf("Closed thread:%d\n", i);
-		i++;
-	}
+	// i = 0;
+	// while (i < var->number_of_philosophers)
+	// {
+	// 	pthread_join(var->philo[i].t, NULL);
+	// 	printf("Closed thread:%d\n", i);
+	// 	i++;
+	// }
 }
