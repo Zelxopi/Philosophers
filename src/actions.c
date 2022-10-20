@@ -6,11 +6,23 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:22:24 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/13 16:12:01 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/15 13:20:57 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
+
+void *routine(void *philo_void)
+{
+	t_philo *philo;
+	
+	philo = philo_void;
+	taking_forks(philo);
+	eating(philo);
+	sleeping(philo);
+	thinking(philo);
+	return(0);
+}
 
 void	taking_forks(t_philo *philo)
 {

@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 15:05:41 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/15 13:44:57 by mtrembla         ###   ########.fr       */
+/*   Created: 2022/10/15 13:45:08 by mtrembla          #+#    #+#             */
+/*   Updated: 2022/10/20 13:38:32 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
 
-void ft_error(char *str)
+long long	get_current_time()
 {
-	ft_putendl_fd("Error", 1);
-	ft_putendl_fd(str, 1);
-	exit(0);
-}
+	struct timeval	current_time;
 
-void	mutex_destroy(t_var *var)
-{
-	int i = 0;
-	while (i < var->number_of_philosophers)
-	{
-		pthread_join(var->philo[i].t, NULL);
-		printf("Closed thread:%d\n", i);
-		i++;
-	}
-	i = var->number_of_philosophers;
-	while (i--)
-	{
-		pthread_mutex_destroy(&var->forks[i]);
-	}
-	free(var->philo);
-	free(var->forks);
+	gettimeofday(&current_time, NULL);
+	return((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 }

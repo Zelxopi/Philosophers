@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:48:41 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/13 16:07:48 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/18 10:32:36 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 
 
@@ -27,6 +28,7 @@ typedef struct s_var
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	number_of_times_eat;
+	long long start;
 	pthread_mutex_t *forks;
 	struct s_philo	*philo;
 }	t_var;
@@ -48,12 +50,15 @@ void	init_mutex(t_var *var);
 void	init_thread(t_var *var);
 //utils
 void	ft_error(char *str);
-void	*routine(void *);
 void	mutex_destroy(t_var *var);
 //actions
+void	*routine(void *);
 void	taking_forks(t_philo *philo);
 void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);
+//time
+long long	get_current_time();
+
 
 #endif
