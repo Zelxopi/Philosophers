@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:05:41 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/15 13:44:57 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:13:07 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	mutex_destroy(t_var *var)
 	while (i < var->number_of_philosophers)
 	{
 		pthread_join(var->philo[i].t, NULL);
-		printf("Closed thread:%d\n", i);
 		i++;
 	}
 	i = var->number_of_philosophers;
@@ -35,4 +34,5 @@ void	mutex_destroy(t_var *var)
 	}
 	free(var->philo);
 	free(var->forks);
+	free(var);
 }

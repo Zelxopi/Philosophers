@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:02:15 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/18 10:37:44 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:29:31 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	var_init(int argc, char **argv, t_var *var)
 	var->time_to_die = philo_atoi(argv[2]);
 	var->time_to_eat = philo_atoi(argv[3]);
 	var->time_to_sleep = philo_atoi(argv[4]);
-	var->start = get_current_time();
+	var->start = get_time(var);
 	if (argc == 6)
 		var->number_of_times_eat = philo_atoi(argv[5]);
 	else

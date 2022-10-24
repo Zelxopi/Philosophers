@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:48:41 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/18 10:32:36 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:07:07 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);
 //time
-long long	get_current_time();
+long long	get_time(t_var *var);
+void	timer(t_var *var, int wait_time);
 
 
 #endif
