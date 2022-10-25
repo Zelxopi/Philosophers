@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:48:41 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/24 15:07:07 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/25 13:29:26 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_var
 typedef struct s_philo
 {
 	pthread_t	t;
+	pthread_t	charron;
+	pthread_mutex_t death;
 	int	id;
 	int l_fork;
 	int	r_fork;
@@ -60,6 +62,7 @@ void	thinking(t_philo *philo);
 //time
 long long	get_time(t_var *var);
 void	timer(t_var *var, int wait_time);
+void	*death(void *);
 
 
 #endif
