@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:22:24 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/25 13:28:25 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:03:46 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void *routine(void *philo_void)
 	t_philo *philo;
 	
 	philo = philo_void;
-	
-	while(philo->var->apocalypse)
+	while(!philo->var->death_occured)
 	{
 		taking_forks(philo);
 		eating(philo);
@@ -32,7 +31,7 @@ void	taking_forks(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->var->forks[philo->l_fork]);
 	pthread_mutex_lock(&philo->var->forks[philo->r_fork]);
-	pthread_mutex_lock(&philo->death);
+	philo->death = 0;
 	printf("%lld\t%d\thas taken forks %d and %d\n", get_time(philo->var), philo->id, philo->l_fork, philo->r_fork);
 }
 
@@ -42,7 +41,8 @@ void	eating(t_philo *philo)
 	timer(philo->var, philo->var->time_to_eat);
 	pthread_mutex_unlock(&philo->var->forks[philo->l_fork]);
 	pthread_mutex_unlock(&philo->var->forks[philo->r_fork]);
-	pthread_mutex_unlock(&philo->death);
+	philo->death = 1;
+	philo->last_meal = get_time(philo->var);
 }
 
 void	sleeping(t_philo *philo)
