@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 13:45:08 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/25 16:09:31 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:23:50 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ void	*death_thread(void *var_void)
 		{
 			if((var->philo[i].death) && ((get_time(var) - var->philo[i].last_meal) >= var->time_to_die))
 			{
-				printf("%lld\tPhilo %d died\n", get_time(var), var->philo[i].id);
+				pthread_mutex_lock(&var->message);
+				printf("%lld\t%d\tdied\n", get_time(var), var->philo[i].id);
 				var->death_occured = 1;
-				exit(0);
+				pthread_mutex_unlock(&var->message);
 			}
 			i++;
 		}

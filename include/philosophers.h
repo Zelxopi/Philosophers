@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:48:41 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/25 16:01:23 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:48:26 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ typedef struct s_var
 	int	number_of_times_eat;
 	long long start;
 	pthread_mutex_t *forks;
+	pthread_mutex_t message;
 	pthread_t	charron;
 	int death_occured;
+	int	error;
 	struct s_philo	*philo;
 }	t_var;
 
@@ -54,7 +56,8 @@ void	init_philo(t_var *var);
 void	init_thread(t_var *var);
 //utils
 void	ft_error(char *str);
-void	mutex_destroy(t_var *var);
+void	print_protect(t_philo *philo, char *msg);
+void	destroy_and_free(t_var *var);
 //actions
 void	*routine(void *);
 void	taking_forks(t_philo *philo);
@@ -65,6 +68,9 @@ void	thinking(t_philo *philo);
 long long	get_time(t_var *var);
 void	timer(t_var *var, int wait_time);
 void	*death_thread(void *);
+
+//créer fonction print_protect qui printf mais avec un mutex
+//de message (ou ajouter le mutex partout)
 
 
 #endif

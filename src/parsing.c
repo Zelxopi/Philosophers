@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:02:15 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/25 16:02:41 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:17:18 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	init_mutex(t_var *var)
 		pthread_mutex_init(&var->forks[i], NULL);
 		i++;
 	}
+	pthread_mutex_init(&var->message, NULL);
 }
 
 void	init_philo(t_var *var)

@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:05:41 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/24 15:13:07 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:27:53 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,15 @@ void ft_error(char *str)
 	exit(0);
 }
 
-void	mutex_destroy(t_var *var)
+void	print_protect(t_philo *philo, char *msg)
+{
+	pthread_mutex_lock(&philo->var->message);
+	if (!philo->var->death_occured)
+	printf("%lld\t%d\t%s\n", get_time(philo->var), philo->id, msg);
+	pthread_mutex_unlock(&philo->var->message);
+}
+
+void	destroy_and_free(t_var *var)
 {
 	int i = 0;
 	while (i < var->number_of_philosophers)
@@ -27,6 +35,7 @@ void	mutex_destroy(t_var *var)
 		pthread_join(var->philo[i].t, NULL);
 		i++;
 	}
+	pthread_join(var->charron, NULL);
 	i = var->number_of_philosophers;
 	while (i--)
 	{

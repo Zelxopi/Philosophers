@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:22:24 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/25 16:03:46 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:17:00 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,26 @@ void	taking_forks(t_philo *philo)
 	pthread_mutex_lock(&philo->var->forks[philo->l_fork]);
 	pthread_mutex_lock(&philo->var->forks[philo->r_fork]);
 	philo->death = 0;
-	printf("%lld\t%d\thas taken forks %d and %d\n", get_time(philo->var), philo->id, philo->l_fork, philo->r_fork);
+	print_protect(philo, "has taken a fork");
 }
 
 void	eating(t_philo *philo)
 {
-	printf("%lld\t%d\tis eating\n", get_time(philo->var), philo->id);
+	print_protect(philo, "is eating");
 	timer(philo->var, philo->var->time_to_eat);
 	pthread_mutex_unlock(&philo->var->forks[philo->l_fork]);
 	pthread_mutex_unlock(&philo->var->forks[philo->r_fork]);
-	philo->death = 1;
 	philo->last_meal = get_time(philo->var);
+	philo->death = 1;
 }
 
 void	sleeping(t_philo *philo)
 {
-	printf("%lld\t%d\tis sleeping\n", get_time(philo->var), philo->id);
+	print_protect(philo, "is sleeping");
 	timer(philo->var, philo->var->time_to_sleep);
 }
 
 void	thinking(t_philo *philo)
 {
-	printf("%lld\t%d\tis thinking\n", get_time(philo->var), philo->id);
+	print_protect(philo, "is thinking");
 }
