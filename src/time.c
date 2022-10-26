@@ -18,33 +18,36 @@ long long	get_time(t_var *var)
 
 	gettimeofday(&current_time, NULL);
 	if (!var->start)
-	return((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
+		return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 	else
-	return(((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000)) - var->start);
+		return (((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000))
+			- var->start);
 }
 
 void	timer(t_var *var, int wait_time)
 {
-	long long start;
+	long long	start;
 
 	start = get_time(var);
 	while ((get_time(var) - start) < wait_time)
 		usleep(50);
-	return;
+	return ;
 }
 
 void	*death_thread(void *var_void)
 {
-	int	i;
-	t_var *var;
+	int		i;
+	t_var	*var;
 
 	var = var_void;
-	while(!var->death_occured)
+	while (!var->death_occured)
 	{
 		i = 0;
-		while(i < var->number_of_philosophers)
+		while (i < var->number_of_philosophers)
 		{
-			if((var->philo[i].death) && ((get_time(var) - var->philo[i].last_meal) >= var->time_to_die))
+			if ((var->philo[i].death)
+				&& ((get_time(var) - var->philo[i].last_meal)
+					>= var->time_to_die))
 			{
 				pthread_mutex_lock(&var->message);
 				printf("%lld\t%d\tdied\n", get_time(var), var->philo[i].id);
@@ -54,5 +57,5 @@ void	*death_thread(void *var_void)
 			i++;
 		}
 	}
-	return(0);
+	return (0);
 }

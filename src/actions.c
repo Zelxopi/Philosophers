@@ -12,19 +12,19 @@
 
 #include "../include/philosophers.h"
 
-void *routine(void *philo_void)
+void	*routine(void *philo_void)
 {
-	t_philo *philo;
-	
+	t_philo	*philo;
+
 	philo = philo_void;
-	while(!philo->var->death_occured)
+	while (!philo->var->death_occured)
 	{
 		taking_forks(philo);
 		eating(philo);
 		sleeping(philo);
 		thinking(philo);
 	}
-	return(0);
+	return (0);
 }
 
 void	taking_forks(t_philo *philo)
