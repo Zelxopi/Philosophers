@@ -51,8 +51,9 @@ void	var_init(int argc, char **argv, t_var *var)
 
 void	init_mutex(t_var *var)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	var->forks = malloc(sizeof(pthread_mutex_t) * var->number_of_philosophers);
 	while (i < var->number_of_philosophers)
 	{
@@ -64,9 +65,10 @@ void	init_mutex(t_var *var)
 
 void	init_philo(t_var *var)
 {
-	int	i = 0;
-	var->philo = malloc(sizeof(t_philo) * var->number_of_philosophers);
+	int	i;
 
+	i = 0;
+	var->philo = malloc(sizeof(t_philo) * var->number_of_philosophers);
 	while (i < var->number_of_philosophers)
 	{
 		var->philo[i].l_fork = i;
@@ -81,11 +83,13 @@ void	init_philo(t_var *var)
 
 void	init_thread(t_var *var)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (i < var->number_of_philosophers)
 	{
-		pthread_create(&var->philo[i].t, NULL, &routine, (void *)&var->philo[i]);
+		pthread_create(&var->philo[i].t, NULL, &routine,
+			(void *)&var->philo[i]);
 		i++;
 	}
 	pthread_create(&var->charron, NULL, &death_thread, (void *) var);
