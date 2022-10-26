@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:47:30 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/26 13:27:05 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:11:05 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ int	main(int argc, char **argv)
 	if (argc == 5 || argc == 6)
 	{
 		var_init(argc, argv, var);
-		init_mutex(var);
-		init_philo(var);
-		init_thread(var);
+		if (!var->error)
+		{
+			init_mutex(var);
+			init_philo(var);
+			init_thread(var);
+			destroy_and_free(var);
+		}
 	}
 	else
 	printf("Invalid number of arguments\n");
-	destroy_and_free(var);
 	printf("Ending\n");
 }

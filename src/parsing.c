@@ -6,48 +6,45 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:02:15 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/26 13:17:18 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:17:22 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
 
-int	philo_atoi(const char *str)
+int	philo_atoi(const char *str, t_var *var)
 {
 	long long	nb;
-	long long	negative;
 
 	nb = 0;
-	negative = 1;
 	while ((*str >= 9 && *str <= 13) || *str == ' ')
 		str++;
-	if (*str == '-' || *str == '+')
-		ft_error("Invalid argument");
 	while (*str)
 	{
 		if (*str >= '0' && *str <= '9')
 		{
 			nb = nb * 10 + (*str - '0');
-			if ((nb * negative) > INT_MAX || (nb * negative) < INT_MIN)
-				ft_error("Does not fit an int");
+			if (nb > INT_MAX || nb < INT_MIN)
+				return (var->error = 1);
 			str++;
 		}
 		else
-			ft_error("Invalid argument");
+			return (var->error = 1);
 	}
-	return (nb * negative);
+	return (nb);
 }
 
 void	var_init(int argc, char **argv, t_var *var)
 {
-	var->number_of_philosophers = philo_atoi(argv[1]);
-	var->time_to_die = philo_atoi(argv[2]);
-	var->time_to_eat = philo_atoi(argv[3]);
-	var->time_to_sleep = philo_atoi(argv[4]);
+	var->error = '\0';
+	var->number_of_philosophers = philo_atoi(argv[1], var);
+	var->time_to_die = philo_atoi(argv[2], var);
+	var->time_to_eat = philo_atoi(argv[3], var);
+	var->time_to_sleep = philo_atoi(argv[4], var);
 	var->start = get_time(var);
 	var->death_occured = '\0';
 	if (argc == 6)
-		var->number_of_times_eat = philo_atoi(argv[5]);
+		var->number_of_times_eat = philo_atoi(argv[5], var);
 	else
 		var->number_of_times_eat = '\0';
 }

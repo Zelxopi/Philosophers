@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:48:41 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/26 13:48:26 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:18:07 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,12 @@ typedef struct s_philo
 }	t_philo;
 
 //parsing
-int		philo_atoi(const char *str);
+int		philo_atoi(const char *str, t_var *var);
 void	var_init(int argc, char **argv, t_var *var);
 void	init_mutex(t_var *var);
 void	init_philo(t_var *var);
 void	init_thread(t_var *var);
 //utils
-void	ft_error(char *str);
 void	print_protect(t_philo *philo, char *msg);
 void	destroy_and_free(t_var *var);
 //actions

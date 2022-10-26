@@ -6,18 +6,11 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:05:41 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/26 13:27:53 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:25:17 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
-
-void ft_error(char *str)
-{
-	ft_putendl_fd("Error", 1);
-	ft_putendl_fd(str, 1);
-	exit(0);
-}
 
 void	print_protect(t_philo *philo, char *msg)
 {
@@ -35,7 +28,6 @@ void	destroy_and_free(t_var *var)
 		pthread_join(var->philo[i].t, NULL);
 		i++;
 	}
-	pthread_join(var->charron, NULL);
 	i = var->number_of_philosophers;
 	while (i--)
 	{

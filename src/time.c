@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 13:45:08 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/26 13:23:50 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:28:47 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	timer(t_var *var, int wait_time)
 
 	start = get_time(var);
 	while ((get_time(var) - start) < wait_time)
-		usleep(1);
+		usleep(50);
 	return;
 }
 
@@ -49,7 +49,7 @@ void	*death_thread(void *var_void)
 				pthread_mutex_lock(&var->message);
 				printf("%lld\t%d\tdied\n", get_time(var), var->philo[i].id);
 				var->death_occured = 1;
-				pthread_mutex_unlock(&var->message);
+				pthread_join(var->charron, NULL);
 			}
 			i++;
 		}
