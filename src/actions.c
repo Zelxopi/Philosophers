@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:22:24 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/31 13:51:39 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:12:38 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*routine(void *philo_void)
 	t_philo	*philo;
 
 	philo = philo_void;
+	if (philo->var->number_of_philosophers < 2)
+		timer(philo->var, philo->var->time_to_die + 10);
 	while (!philo->var->death_occured)
 	{
 		taking_forks(philo);
