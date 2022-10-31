@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:48:41 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/26 14:18:07 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/31 13:48:54 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_philo
 	int				death;
 	int				l_fork;
 	int				r_fork;
+	int				nb_of_meal;
 	pthread_t		t;
 	long long		last_meal;
 	struct s_var	*var;
@@ -65,5 +66,6 @@ void		thinking(t_philo *philo);
 long long	get_time(t_var *var);
 void		timer(t_var *var, int wait_time);
 void		*death_thread(void *var_void);
+int			full_of_spaghetti(t_var *var);
 
 #endif

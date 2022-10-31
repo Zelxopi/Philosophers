@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:22:24 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/26 13:17:00 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/31 13:51:39 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ void	eating(t_philo *philo)
 {
 	print_protect(philo, "is eating");
 	timer(philo->var, philo->var->time_to_eat);
+	philo->nb_of_meal--;
+	if (philo->var->number_of_times_eat && full_of_spaghetti(philo->var))
+		{
+			philo->var->death_occured = 1;
+			printf("%lld\tEveryone is full of spaghetti\n", get_time(philo->var));
+		}
 	pthread_mutex_unlock(&philo->var->forks[philo->l_fork]);
 	pthread_mutex_unlock(&philo->var->forks[philo->r_fork]);
 	philo->last_meal = get_time(philo->var);

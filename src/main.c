@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:47:30 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/26 14:11:05 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/31 13:57:13 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ int	main(int argc, char **argv)
 			init_thread(var);
 			destroy_and_free(var);
 		}
+		else
+			printf("Invalid argument\n");
 	}
 	else
 		printf("Invalid number of arguments\n");
-	printf("Ending\n");
 }

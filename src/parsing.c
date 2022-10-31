@@ -6,7 +6,7 @@
 /*   By: mtrembla <mtrembla@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:02:15 by mtrembla          #+#    #+#             */
-/*   Updated: 2022/10/26 14:17:22 by mtrembla         ###   ########.fr       */
+/*   Updated: 2022/10/31 13:57:08 by mtrembla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	init_philo(t_var *var)
 		var->philo[i].var = var;
 		var->philo[i].last_meal = 0;
 		var->philo[i].death = 1;
+		var->philo[i].nb_of_meal = var->number_of_times_eat;
 		i++;
 	}
 }
