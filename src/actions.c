@@ -44,8 +44,8 @@ void	eating(t_philo *philo)
 	philo->nb_of_meal--;
 	if (philo->var->number_of_times_eat && full_of_spaghetti(philo->var))
 		{
+			print_protect(philo, "Everyone is full of spaghetti");
 			philo->var->death_occured = 1;
-			printf("%lld\tEveryone is full of spaghetti\n", get_time(philo->var));
 		}
 	pthread_mutex_unlock(&philo->var->forks[philo->l_fork]);
 	pthread_mutex_unlock(&philo->var->forks[philo->r_fork]);

@@ -68,7 +68,7 @@ int	full_of_spaghetti(t_var *var)
 	i = 0;
 	while (i < var->number_of_philosophers)
 	{
-		if (var->philo[i].nb_of_meal != 0)
+		if (var->philo[i].nb_of_meal > 0)
 			return (0);
 		i++;
 	}
