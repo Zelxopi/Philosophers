@@ -29,10 +29,10 @@ int	main(int argc, char **argv)
 		}
 		else
 		{
-			free(var);
 			printf("Invalid argument\n");
 		}
 	}
 	else
 		printf("Invalid number of arguments\n");
+	free(var);
 }

@@ -37,5 +37,4 @@ void	destroy_and_free(t_var *var)
 	}
 	free(var->philo);
 	free(var->forks);
-	free(var);
 }
