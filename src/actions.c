@@ -33,23 +33,23 @@ void	taking_forks(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->var->forks[philo->l_fork]);
 	pthread_mutex_lock(&philo->var->forks[philo->r_fork]);
-	philo->death = 0;
 	print_protect(philo, "has taken a fork");
 }
 
 void	eating(t_philo *philo)
 {
+	philo->death = 0;
 	print_protect(philo, "is eating");
+	philo->last_meal = get_time(philo->var);
 	timer(philo->var, philo->var->time_to_eat);
 	philo->nb_of_meal--;
 	if (philo->var->number_of_times_eat && full_of_spaghetti(philo->var))
-		{
-			print_protect(philo, "Everyone is full of spaghetti");
-			philo->var->death_occured = 1;
-		}
+	{
+		print_protect(philo, "Everyone is full of spaghetti");
+		philo->var->death_occured = 1;
+	}
 	pthread_mutex_unlock(&philo->var->forks[philo->l_fork]);
 	pthread_mutex_unlock(&philo->var->forks[philo->r_fork]);
-	philo->last_meal = get_time(philo->var);
 	philo->death = 1;
 }
 

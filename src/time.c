@@ -49,10 +49,8 @@ void	*death_thread(void *var_void)
 				&& ((get_time(var) - var->philo[i].last_meal)
 					>= var->time_to_die))
 			{
-				pthread_mutex_lock(&var->message);
-				printf("%lld\t%d\tdied\n", get_time(var), var->philo[i].id);
+				print_protect(&var->philo[i], "died");
 				var->death_occured = 1;
-				pthread_mutex_unlock(&var->message);
 				pthread_join(var->charron, NULL);
 			}
 			i++;
