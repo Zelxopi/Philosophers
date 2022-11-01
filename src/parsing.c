@@ -36,17 +36,13 @@ int	philo_atoi(const char *str, t_var *var)
 
 void	var_init(int argc, char **argv, t_var *var)
 {
-	var->error = '\0';
 	var->number_of_philosophers = philo_atoi(argv[1], var);
 	var->time_to_die = philo_atoi(argv[2], var);
 	var->time_to_eat = philo_atoi(argv[3], var);
 	var->time_to_sleep = philo_atoi(argv[4], var);
 	var->start = get_time(var);
-	var->death_occured = '\0';
 	if (argc == 6)
 		var->number_of_times_eat = philo_atoi(argv[5], var);
-	else
-		var->number_of_times_eat = '\0';
 }
 
 void	init_mutex(t_var *var)
