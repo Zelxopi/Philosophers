@@ -17,8 +17,13 @@ void	*routine(void *philo_void)
 	t_philo	*philo;
 
 	philo = philo_void;
-	if (philo->var->number_of_philosophers < 2)
-		timer(philo->var, philo->var->time_to_die + 10);
+	if (philo->id % 2 == 0 || philo->var->number_of_philosophers < 2)
+	{
+		thinking(philo);
+		timer(philo->var, 5);
+		if (philo->var->number_of_philosophers < 2)
+			timer(philo->var, philo->var->time_to_die);
+	}
 	while (!philo->var->death_occured)
 	{
 		taking_forks(philo);
