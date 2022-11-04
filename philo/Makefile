@@ -29,15 +29,12 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror -g
 RM = rm -fr
 
-LIBFT = ./libft/libft.a
-
 $(ODIR)/%.o: $(SDIR)/%.c
 	@$(CC) $(FLAGS) -c $< -o $@
 	@echo "\033[92m.\033[0m\c"
 
 $(NAME): $(ODIR) $(OFIX)
-	@$(MAKE) lib -C libft
-	@$(CC) $(CFLAGS) $(OFIX) -o $(NAME) $(LIBFT)
+	@$(CC) $(CFLAGS) $(OFIX) -o $(NAME)
 
 $(ODIR):
 	@mkdir -p $(ODIR)

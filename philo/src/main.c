@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_var	*var;
 
-	var = ft_calloc(1, sizeof(t_var));
+	var = malloc(sizeof(t_var));
 	if (argc == 5 || argc == 6)
 	{
 		var_init(argc, argv, var);

@@ -36,6 +36,9 @@ int	philo_atoi(const char *str, t_var *var)
 
 void	var_init(int argc, char **argv, t_var *var)
 {
+	var->death_occured = '\0';
+	var->error = '\0';
+	var->start = '\0';
 	var->number_of_philosophers = philo_atoi(argv[1], var);
 	var->time_to_die = philo_atoi(argv[2], var);
 	var->time_to_eat = philo_atoi(argv[3], var);

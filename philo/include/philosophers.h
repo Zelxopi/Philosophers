@@ -13,7 +13,8 @@
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
-# include "../libft/libft.h"
+# include <stdlib.h>
+# include <limits.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <pthread.h>
